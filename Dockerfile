@@ -2,9 +2,7 @@ FROM eclipse-temurin
 
 WORKDIR /app
 
-COPY /ConfigFileCreator.java /app
+ADD ./start.sh /app
 COPY . /app
 
-RUN javac ConfigFileCreator.java
-
-CMD ["java", "ConfigFileCreator"]
+CMD sh start.sh
