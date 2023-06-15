@@ -6,7 +6,6 @@ echo " _  | | |\/| | | | / __| |/ __|  _ \ / _ \| __|"
 echo "| |_| | |  | | |_| \__ \ | (__| |_) | (_) | |_ "
 echo " \___/|_|  |_|\__,_|___/_|\___|____/ \___/ \__|"
 
-echo "=============================="
 echo "Image by artificialbutter <3"
 echo "=============================="
                                                 
@@ -35,4 +34,4 @@ echo "$configFileContent" > config.txt
 echo "Starting..."
 echo "=============================="
 # Start JMusicBot-0.3.9.jar
-java -jar JMusicBot-0.3.9.jar
+java -jar JMusicBot-0.3.9.jar -Dnogui=true
