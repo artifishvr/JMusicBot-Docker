@@ -33,5 +33,5 @@ echo "$configFileContent" > config.txt
 
 echo "Starting..."
 echo "=============================="
-# Start JMusicBot-0.4.1.jar
-java -jar JMusicBot-0.4.1.jar -Dnogui=true
+# Start JMusicBot
+java -jar JMusicBot-0.4.2.jar -Dnogui=true
