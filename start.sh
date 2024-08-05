@@ -6,7 +6,7 @@ echo " _  | | |\/| | | | / __| |/ __|  _ \ / _ \| __|"
 echo "| |_| | |  | | |_| \__ \ | (__| |_) | (_) | |_ "
 echo " \___/|_|  |_|\__,_|___/_|\___|____/ \___/ \__|"
 
-echo "Image by artifishvr <3"
+echo "Image from https://github.com/artifishvr/JMusicBot-Docker"
 echo "=============================="
                                                 
 # Read environment variables
