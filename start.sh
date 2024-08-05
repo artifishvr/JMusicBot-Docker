@@ -6,7 +6,7 @@ echo " _  | | |\/| | | | / __| |/ __|  _ \ / _ \| __|"
 echo "| |_| | |  | | |_| \__ \ | (__| |_) | (_) | |_ "
 echo " \___/|_|  |_|\__,_|___/_|\___|____/ \___/ \__|"
 
-echo "Image by artificialbutter <3"
+echo "Image by artifishvr <3"
 echo "=============================="
                                                 
 # Read environment variables
@@ -34,4 +34,4 @@ echo "$configFileContent" > config.txt
 echo "Starting..."
 echo "=============================="
 # Start JMusicBot
-java -jar JMusicBot-0.4.2.jar -Dnogui=true
+java -jar JMusicBot.jar -Dnogui=true

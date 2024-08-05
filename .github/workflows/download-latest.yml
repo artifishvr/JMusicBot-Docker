@@ -1,0 +1,45 @@
+name: Download Latest MediaMTX Release
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 2" # Every Tuesday
+
+jobs:
+  check-and-download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          ref: ${{ github.head_ref }}
+
+      - name: Get Latest Release
+        id: get_release
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const response = await github.repos.getLatestRelease({
+              owner: 'jagrosh',
+              repo: 'MusicBot'
+            });
+            console.log(response.data.tag_name);
+            console.log(response.data.tarball_url);
+            console.log(response.data.assets[0].browser_download_url);
+            return response.data.assets[0].browser_download_url;
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+
+      - name: Delete old release
+        run: |
+          rm -rf JMusicBot.jar
+
+      - name: Download Latest Release
+        run: |
+          curl -L ${{ steps.get_release.outputs.result }} -o JMusicBot.jar
+
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update JMusicBot - Automated
