@@ -24,8 +24,8 @@ owner = $owner
 
 prefix = \"$prefix\"
 
-ytpotoken = "$potoken"
-ytvisitordata = "$visitordata"
+ytpotoken = \"$potoken\"
+ytvisitordata = \"$visitordata\"
 
 "
 
