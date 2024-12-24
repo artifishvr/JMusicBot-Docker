@@ -8,33 +8,50 @@ echo " \___/|_|  |_|\__,_|___/_|\___|____/ \___/ \__|"
 
 echo "Image from https://github.com/artifishvr/JMusicBot-Docker"
 echo "=============================="
-                                                
+
 # Read environment variables
-token="$TOKEN"
-owner="$OWNER"
-prefix="$PREFIX"
-potoken="$PO_TOKEN"
-visitordata="$VISITOR_DATA"
+token="${TOKEN:-}"
+owner="${OWNER:-}"
+prefix="${PREFIX:-!}"
+potoken="${PO_TOKEN:-}"
+visitordata="${VISITOR_DATA:-}"
 
+# Check required variables
+required_vars=("token" "prefix" "owner" "potoken" "visitordata")
+missing_vars=()
+
+for var in "${required_vars[@]}"; do
+    if [ -z "${!var}" ]; then
+        missing_vars+=("$var")
+    fi
+done
+
+if [ ${#missing_vars[@]} -ne 0 ]; then
+    echo "Error: The following environment variables are required:"
+    printf '%s\n' "${missing_vars[@]}"
+    exit 1
+fi
 # Template for config.txt
-template="// This is the configuration file for JMusicBot.
-token = $token
+read -r -d '' template << 'EOF'
+// Configuration file for JMusicBot
 
-owner = $owner
+// Bot token
+token = %s
 
-prefix = \"$prefix\"
+// Bot owner ID
+owner = %s
 
-ytpotoken = \"$potoken\"
-ytvisitordata = \"$visitordata\"
+// Command prefix
+prefix = "%s"
 
-"
+// YouTube tokens
+ytpotoken = "%s"
+ytvisitordata = "%s"
+EOF
 
 echo "Creating Config..."
-# Replace the placeholders in the template with environment variable values
-configFileContent=$(printf "$template")
-
-# Write config.txt file
-echo "$configFileContent" > config.txt
+# Format the template with variables
+printf "$template" "$token" "$owner" "$prefix" "$potoken" "$visitordata" > config.txt
 
 echo "Starting..."
 echo "=============================="
