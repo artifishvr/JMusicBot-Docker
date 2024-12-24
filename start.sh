@@ -13,6 +13,8 @@ echo "=============================="
 token="$TOKEN"
 owner="$OWNER"
 prefix="$PREFIX"
+potoken="$PO_TOKEN"
+visitordata="$VISITOR_DATA"
 
 # Template for config.txt
 template="// This is the configuration file for JMusicBot.
@@ -21,6 +23,9 @@ token = $token
 owner = $owner
 
 prefix = \"$prefix\"
+
+ytpotoken = "$potoken"
+ytvisitordata = "$visitordata"
 
 "
 
