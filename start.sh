@@ -17,20 +17,37 @@ potoken="${PO_TOKEN:-}"
 visitordata="${VISITOR_DATA:-}"
 
 # Check required variables
-required_vars=("token" "prefix" "owner" "potoken" "visitordata")
-missing_vars=()
+missing=0
 
-for var in "${required_vars[@]}"; do
-    if [ -z "${!var}" ]; then
-        missing_vars+=("$var")
-    fi
-done
+if [ -z "$token" ]; then
+    echo "Error: token is required"
+    missing=1
+fi
 
-if [ ${#missing_vars[@]} -ne 0 ]; then
-    echo "Error: The following environment variables are required:"
-    printf '%s\n' "${missing_vars[@]}"
+if [ -z "$prefix" ]; then
+    echo "Error: prefix is required" 
+    missing=1
+fi
+
+if [ -z "$owner" ]; then
+    echo "Error: owner is required"
+    missing=1
+fi
+
+if [ -z "$potoken" ]; then
+    echo "Error: potoken is required"
+    missing=1
+fi
+
+if [ -z "$visitordata" ]; then
+    echo "Error: visitordata is required"
+    missing=1
+fi
+
+if [ $missing -eq 1 ]; then
     exit 1
 fi
+
 # Template for config.txt
 read -r -d '' template << 'EOF'
 // Configuration file for JMusicBot
